@@ -31,9 +31,11 @@ export default function($scope, todoFactory) {
         todo.isEditing = false;
     };
 
+    //es6 has something called destructing
+    const { createTask, updateTask, deleteTask, watchCreateTaskInput } = todoFactory;
 
-    $scope.createTask = _.partial(todoFactory.createTask, $scope, params);
-    $scope.updateTask = _.partial(todoFactory.updateTask);
-    $scope.deleteTask = _.partial(todoFactory.deleteTask, $scope);
-    $scope.$watch('createTaskInput', _.partial(todoFactory.watchCreateTaskInput, params, $scope));
+    $scope.createTask = _.partial(createTask, $scope, params);
+    $scope.updateTask = _.partial(updateTask, $scope);
+    $scope.deleteTask = _.partial(deleteTask, $scope);
+    $scope.$watch('createTaskInput', _.partial(watchCreateTaskInput, params, $scope));
 }
