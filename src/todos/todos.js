@@ -1,60 +1,39 @@
 import _ from 'lodash';
 
-export default function ($scope) {
-	let params= {
-		createHasInput: false
-	};
+export default function($scope, todoFactory) {
+    let params = {
+        createHasInput: false
+    };
 
-	$scope.todos = [
-		{
-			task: 'do dishes',
-			isCompleted: false,
-			isEditting: false
-		},
-		{
-			task: 'walk the dog',
-			isCompleted: true,
-			isEditting: false
-		}
-	];
+    $scope.todos = [
+    {
+        task: 'do dishes',
+        isCompleted: false,
+        isEditing: false
+    },
+    {
+        task: 'walk the dog',
+        isCompleted: true,
+        isEditing: false
+    }
+    ];
 
-	$scope.onCompletedClick = function (todo) {
-		return todo.isCompleted = !todo.isCompleted;
-	};
+    $scope.onCompletedClick = todo => {
+        todo.isCompleted = !todo.isCompleted;
+    };
 
-	$scope.onEditClick = function (todo) {
-		todo.isEditting = true;
-		todo.updatedTask = todo.task;
+    $scope.onEditClick = todo => {
+        todo.isEditing = true;
+        todo.updatedTask = todo.task;
+    };
 
-	};
+    $scope.onCancelClick = todo => {
+        todo.isEditing = false;
+    };
 
-	$scope.onCancelClick = todo => {
-		todo.isEditting = false;
-	};
 
-	$scope.createTask = function () {
-		params.createHasInput = false;
-		$scope.createTaskInput = '';
-	};
-
-	$scope.updateTask = todo => {
-		todo.task = todo.updatedTask;
-		todo.isEditting = false;
-	};
-
-	$scope.deleteTask = todoToDelete => {
-		_.remove($scope.todos, todo => todo.task === todoToDelete.task);
-	};
-
-	$scope.$watch('createTaskInput', val => {
-		if (!val && params.createHasInput) {
-			$scope.todos.pop();
-			params.createHasInput = false;
-		} else if (val && !params.createHasInput) {
-			$scope.todos.push({task: val, isCompleted: false});
-			params.createHasInput = true;
-		} else if (val && params.createHasInput) {
-			$scope.todos[$scope.todos.length - 1].task = val;
-		} 
-	});
+    $scope.createTask = _.partial(todoFactory.createTask, $scope, params);
+    $scope.updateTask = _.partial(todoFactory.updateTask);
+    $scope.deleteTask = _.partial(todoFactory.deleteTask, $scope);
+    $scope.$watch('createTaskInput', _.partial(todoFactory.watchCreateTaskInput, params, $scope));
 }

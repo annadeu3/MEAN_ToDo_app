@@ -1,8 +1,9 @@
 import angular from 'angular';
+import todoFactory from 'factories/todo-factory';
 import uiRouter from 'angular-ui-router';
 import todosCtrl from 'todos/todos';
 
-const app = angular.module('app', [uiRouter]);
+const app = angular.module('app', [uiRouter, todoFactory.name]);
 
 app.config(($stateProvider, $urlRouterProvider,$locationProvider) => {
 	$urlRouterProvider.otherwise('/');
