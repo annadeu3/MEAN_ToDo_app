@@ -12,10 +12,13 @@
   "dependencies": {
     "angular": "^1.5.0",
     "angular-ui-router": "^0.2.18",
+    "body-parser": "^1.15.0",
     "bootstrap-sass": "^3.3.6",
     "express": "^4.13.4",
     "jquery": "^2.2.1",
-    "lodash": "^4.5.1"
+    "kerberos": "0.0.18",
+    "lodash": "^4.5.1",
+    "mongoose": "^4.4.5"
   },
   "devDependencies": {
     "autoprefixer-loader": "^3.2.0",
