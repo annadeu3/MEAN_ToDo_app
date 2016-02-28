@@ -28,15 +28,34 @@
 				</span>
 
 				<form ng-submit="updateTask(todo)">
-					<input ng-if="todo.isEditting" class="form-control todos__update-input" ng-value="todo.task" ng-model="todo.updatedTask"> 
+					<input ng-if="todo.isEditting" 
+						class="form-control todos__update-input" 
+						ng-value="todo.task" 
+						ng-model="todo.updatedTask"> 
 				</form>
 			</td>
 			<td>
-				<button ng-if="!todo.isEditting" class="btn btn-info" ng-click="onEditClick(todo)">Edit</button>
-				<button ng-if="!todo.isEditting" class="btn btn-danger"ng-click="onDeleteClick(todo)">Delete</button>
+				<button ng-if="!todo.isEditting" 
+					class="btn btn-info" 
+					ng-click="onEditClick(todo)">
+					Edit
+				</button>
+				<button ng-if="!todo.isEditting" 
+					class="btn btn-danger"
+					ng-click="deleteTask(todo)">
+					Delete
+				</button>
 
-				<button ng-if="todo.isEditting" class="btn btn-primary" ng-click="updateTask(todo)">Save</button>
-				<button ng-if="todo.isEditting" class="btn btn-default" ng-click="onCancelClick(todo)">Cancel</button>
+				<button ng-if="todo.isEditting" 
+					class="btn btn-primary" 
+					ng-click="updateTask(todo)">
+					Save
+				</button>
+				<button ng-if="todo.isEditting" 
+					class="btn btn-default" 
+					ng-click="onCancelClick(todo)">
+					Cancel
+				</button>
 			</td>
 		</tr>
 

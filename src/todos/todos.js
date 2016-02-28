@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 export default function ($scope) {
 	let params= {
 		createHasInput: false
@@ -21,11 +23,13 @@ export default function ($scope) {
 	};
 
 	$scope.onEditClick = function (todo) {
-		return todo.isEditting = true;
+		todo.isEditting = true;
+		todo.updatedTask = todo.task;
+
 	};
 
 	$scope.onCancelClick = todo => {
-		return todo.isEditting = false;
+		todo.isEditting = false;
 	};
 
 	$scope.createTask = function () {
@@ -38,9 +42,9 @@ export default function ($scope) {
 		todo.isEditting = false;
 	};
 
-	// $scope.onDeleteClick = todo => {
-
-	// };
+	$scope.deleteTask = todoToDelete => {
+		_.remove($scope.todos, todo => todo.task === todoToDelete.task);
+	};
 
 	$scope.$watch('createTaskInput', val => {
 		if (!val && params.createHasInput) {
