@@ -5,7 +5,7 @@ export default function($scope, todoFactory) {
         createHasInput: false
     };
 
-    // $scope.todos = [
+    $scope.todos = [];
     // {
     //     task: 'do dishes',
     //     isCompleted: false,
