@@ -8,4 +8,14 @@
 		display: block;
 		margin: 0 auto 20px;
 	}
+	&__task {
+		&--completed {
+			text-decoration: line-through;
+		}
+	}
+}
+
+th, td {
+	font-size: 16px;
+	text-align: center;
 }
