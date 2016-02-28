@@ -5,18 +5,20 @@ export default function($scope, todoFactory) {
         createHasInput: false
     };
 
-    $scope.todos = [
-    {
-        task: 'do dishes',
-        isCompleted: false,
-        isEditing: false
-    },
-    {
-        task: 'walk the dog',
-        isCompleted: true,
-        isEditing: false
-    }
-    ];
+    // $scope.todos = [
+    // {
+    //     task: 'do dishes',
+    //     isCompleted: false,
+    //     isEditing: false
+    // },
+    // {
+    //     task: 'walk the dog',
+    //     isCompleted: true,
+    //     isEditing: false
+    // }
+    // ];
+
+    todoFactory.getTasks($scope);
 
     $scope.onCompletedClick = todo => {
         todo.isCompleted = !todo.isCompleted;
@@ -31,7 +33,6 @@ export default function($scope, todoFactory) {
         todo.isEditing = false;
     };
 
-    //es6 has something called destructing
     const { createTask, updateTask, deleteTask, watchCreateTaskInput } = todoFactory;
 
     $scope.createTask = _.partial(createTask, $scope, params);
